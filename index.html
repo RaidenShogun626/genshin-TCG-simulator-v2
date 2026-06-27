@@ -1,0 +1,358 @@
+<html lang="utf-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原神祈愿模拟器（七圣召唤版）</title>
+    <link rel="stylesheet" href="./css/gacha.css">
+    <link rel="shortcut icon" href="./images/favicon.ico">
+</head>
+<body>
+<div class="card-level">
+    <img src="./images/Card_Level.png" alt="月草的赐慧">
+</div>
+<!-- 右上角资源显示 -->
+        <div class="resources-top">
+            <div class="resource-group">
+                <div class="resource-item">
+                    <img src="./images/原石.png" alt="原石" class="resource-icon">
+                    <span class="resource-count" id="primogemCount">160</span>
+                    <button class="add-btn" id="addPrimogemBtn">+</button>
+                </div>
+            </div>
+            <div class="resource-group">
+                <div class="resource-item fate-item">
+                    <img src="./images/纠缠之缘.webp" alt="纠缠之缘" class="resource-icon">
+                    <span class="resource-count" id="fateCount">0</span>
+                </div>
+            </div>
+        </div>
+<div class="gacha-bg"></div>
+<div class="card-box"></div>
+<!-- 左下角资源显示 -->
+        <div class="resources-bottom">
+            <div class="resource-item">
+                <img src="./images/无主的星辉.png" alt="无主的星辉" class="resource-icon">
+                <span class="resource-count" id="starlightCount">4</span>
+            </div>
+            <div class="resource-item">
+                <img src="./images/无主的星尘.png" alt="无主的星尘" class="resource-icon">
+                <span class="resource-count" id="stardustCount">46</span>
+            </div>
+        </div>
+    <section id="wish-container">
+        
+        <button class="wish-btn" id="singleBtn">
+            <span>祈愿1次</span>
+            <div class="wish-cost">
+                <img src="./images/纠缠之缘.webp" alt="纠缠之缘" class="wish-icon">
+                <span class="wish-count">x 1</span>
+            </div>
+        </button>
+        <button class="wish-btn" id="tenBtn">
+            <span>祈愿10次</span>
+            <div class="wish-cost">
+                <img src="./images/纠缠之缘.webp" alt="纠缠之缘" class="wish-icon">
+                <span class="wish-count">x 10</span>
+            </div>
+        </button>
+        
+        <button class="close-Wish" id="closeBtn"> </button>
+        
+        <div class="wish-footer">
+            <button class="footer-btn" id="dustExchangeBtn">尘辉兑换</button>
+            <button class="footer-btn" id="detailBtn">详情</button>
+            <button class="footer-btn">历史记录</button>
+        </div>
+        
+        <!-- 尘辉兑换界面 -->
+        <div class="dust-exchange-container" style="display: none;">
+            <div class="exchange-header">
+                <h2>商城</h2>
+                <p>请适度娱乐，理性消费</p>
+                <button class="close-exchange-btn" id="closeExchangeBtn">×</button>
+            </div>
+            
+            <div class="exchange-tabs">
+                <button class="tab-btn" data-tab="starlight">星辉兑换</button>
+                <button class="tab-btn" data-tab="stardust">星尘兑换</button>
+                <button class="tab-btn" data-tab="primogem">原石购买</button>
+                <button class="tab-btn" data-tab="genesis">创世结晶</button>
+            </div>
+            
+            <div class="exchange-content">
+                <!-- 星辉兑换 -->
+                <div class="tab-content active" id="starlight-tab">
+                    <div class="exchange-items">
+                        <div class="exchange-item">
+                            <img src="./images/纠缠之缘.webp" alt="纠缠之缘" class="item-icon">
+                            <h3>纠缠之缘</h3>
+                            <p>所需：5 星辉</p>
+                            <button class="exchange-btn" id="starlightExchangeFateBtn">兑换</button>
+                        </div>
+                        <div class="exchange-item">
+                            <img src="./images/相遇之缘.webp" alt="相遇之缘" class="item-icon">
+                            <h3>相遇之缘</h3>
+                            <p>所需：5 星辉</p>
+                            <button class="exchange-btn" id="starlightExchangeEncounterBtn">兑换</button>
+                        </div>
+                        <!-- 更多物品 -->
+                    </div>
+                </div>
+                
+                <!-- 星尘兑换 -->
+                <div class="tab-content" id="stardust-tab">
+                    <div class="exchange-items">
+                        <div class="exchange-item">
+                            <img src="./images/纠缠之缘.webp" alt="纠缠之缘" class="item-icon">
+                            <h3>纠缠之缘</h3>
+                            <p>所需：75 星尘</p>
+                            <button class="exchange-btn" id="stardustExchangeFateBtn">兑换</button>
+                        </div>
+                        <div class="exchange-item">
+                            <img src="./images/相遇之缘.webp" alt="相遇之缘" class="item-icon">
+                            <h3>相遇之缘</h3>
+                            <p>所需：75 星尘</p>
+                            <button class="exchange-btn" id="stardustExchangeEncounterBtn">兑换</button>
+                        </div>
+                        <!-- 更多物品 -->
+                    </div>
+                </div>
+                
+                <!-- 原石购买 -->
+                <div class="tab-content" id="primogem-tab">
+                    <div class="exchange-items">
+                        <div class="exchange-item">
+                            <img src="./images/纠缠之缘.webp" alt="纠缠之缘" class="item-icon">
+                            <h3>纠缠之缘 ×1</h3>
+                            <p>所需：160 原石</p>
+                            <button class="exchange-btn" id="exchange1Btn">兑换</button>
+                        </div>
+                        <div class="exchange-item">
+                            <img src="./images/纠缠之缘.webp" alt="纠缠之缘" class="item-icon">
+                            <h3>纠缠之缘 ×10</h3>
+                            <p>所需：1600 原石</p>
+                            <button class="exchange-btn" id="exchange10Btn">兑换</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 创世结晶 -->
+                <div class="tab-content" id="genesis-tab">
+                    <div class="exchange-items">
+                        <div class="exchange-item">
+                            <img src="./images/创世结晶.png" alt="创世结晶" class="item-icon">
+                            <h3>创世结晶</h3>
+                            <p>当前拥有：<span id="genesisCrystalCount">0</span></p>
+                        </div>
+                        <div class="exchange-item recharge-item" data-amount="60" data-price="6" data-bonus="0">
+                            <div class="double-badge-wrapper">
+                                <img src="./images/双倍角标.webp" alt="双倍" class="double-badge-bg">
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="double-badge-icon">
+                                <div class="double-badge-text">
+                                    <div class="double-label">双倍！</div>
+                                    <div class="double-amount">+60</div>
+                                </div>
+                            </div>
+                            <p class="bonus-text">
+                                <span class="bonus-label">Bonus</span>
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="bonus-icon">
+                                <span class="bonus-amount">0</span>
+                            </p>
+                            <img src="./images/60创世结晶.webp" alt="创世结晶" class="item-icon">
+                            <h3><span class="crystal-amount">60</span>枚创世结晶</h3>
+                            <p>￥<span class="price-amount">6</span>.00</p>
+                        </div>
+                        <div class="exchange-item recharge-item" data-amount="300" data-price="30" data-bonus="30">
+                            <p class="bonus-text">
+                                <span class="bonus-label">Bonus</span>
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="bonus-icon">
+                                <span class="bonus-amount">30</span>
+                            </p>
+                            <div class="double-badge-wrapper">
+                                <img src="./images/双倍角标.webp" alt="双倍" class="double-badge-bg">
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="double-badge-icon">
+                                <div class="double-badge-text">
+                                    <div class="double-label">双倍！</div>
+                                    <div class="double-amount">+300</div>
+                                </div>
+                            </div>
+                            <img src="./images/300创世结晶.webp" alt="创世结晶" class="item-icon">
+                            <h3><span class="crystal-amount">300</span>枚创世结晶</h3>
+                            <p>￥<span class="price-amount">30</span>.00</p>
+                        </div>
+                        <div class="exchange-item recharge-item" data-amount="980" data-price="98" data-bonus="110">
+                            <p class="bonus-text">
+                                <span class="bonus-label">Bonus</span>
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="bonus-icon">
+                                <span class="bonus-amount">110</span>
+                            </p>
+                            <div class="double-badge-wrapper">
+                                <img src="./images/双倍角标.webp" alt="双倍" class="double-badge-bg">
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="double-badge-icon">
+                                <div class="double-badge-text">
+                                    <div class="double-label">双倍！</div>
+                                    <div class="double-amount">+980</div>
+                                </div>
+                            </div>
+                            <img src="./images/980创世结晶.webp" alt="创世结晶" class="item-icon">
+                            <h3><span class="crystal-amount">980</span>枚创世结晶</h3>
+                            <p>￥<span class="price-amount">98</span>.00</p>
+                        </div>
+                        <div class="exchange-item recharge-item" data-amount="1980" data-price="198" data-bonus="260">
+                            <p class="bonus-text">
+                                <span class="bonus-label">Bonus</span>
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="bonus-icon">
+                                <span class="bonus-amount">260</span>
+                            </p>
+                            <div class="double-badge-wrapper">
+                                <img src="./images/双倍角标.webp" alt="双倍" class="double-badge-bg">
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="double-badge-icon">
+                                <div class="double-badge-text">
+                                    <div class="double-label">双倍！</div>
+                                    <div class="double-amount">+1980</div>
+                                </div>
+                            </div>
+                            <img src="./images/1980创世结晶.webp" alt="创世结晶" class="item-icon">
+                            <h3><span class="crystal-amount">1980</span>枚创世结晶</h3>
+                            <p>￥<span class="price-amount">198</span>.00</p>
+                        </div>
+                        <div class="exchange-item recharge-item" data-amount="3280" data-price="328" data-bonus="600">
+                            <p class="bonus-text">
+                                <span class="bonus-label">Bonus</span>
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="bonus-icon">
+                                <span class="bonus-amount">600</span>
+                            </p>
+                            <div class="double-badge-wrapper">
+                                <img src="./images/双倍角标.webp" alt="双倍" class="double-badge-bg">
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="double-badge-icon">
+                                <div class="double-badge-text">
+                                    <div class="double-label">双倍！</div>
+                                    <div class="double-amount">+3280</div>
+                                </div>
+                            </div>
+                            <img src="./images/3280创世结晶.webp" alt="创世结晶" class="item-icon">
+                            <h3><span class="crystal-amount">3280</span>枚创世结晶</h3>
+                            <p>￥<span class="price-amount">328</span>.00</p>
+                        </div>
+                        <div class="exchange-item recharge-item" data-amount="6480" data-price="648" data-bonus="1600">
+                            <p class="bonus-text">
+                                <span class="bonus-label">额外赠</span>
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="bonus-icon">
+                                <span class="bonus-amount">1600</span>
+                            </p>
+                            <div class="double-badge-wrapper">
+                                <img src="./images/双倍角标.webp" alt="双倍" class="double-badge-bg">
+                                <img src="./images/创世结晶.png" alt="创世结晶" class="double-badge-icon">
+                                <div class="double-badge-text">
+                                    <div class="double-label">双倍！</div>
+                                    <div class="double-amount">+6480</div>
+                                </div>
+                            </div>
+                            <img src="./images/6480创世结晶.webp" alt="创世结晶" class="item-icon">
+                            <h3><span class="crystal-amount">6480</span>枚创世结晶</h3>
+                            <p>￥<span class="price-amount">648</span>.00</p>
+                        </div>
+                    </div>
+                    <!-- 重置双倍按钮（测试用） - 独立于grid布局 -->
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="resetDoubleBtn" style="background: linear-gradient(135deg, #ffd700, #ffb62f); color: #333; border: 2px dashed rgba(255, 215, 0, 0.5); padding: 12px 32px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;">🔄 重置双倍</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <button class="skip-btn" id="skipBtn">跳过</button>
+    
+    <!-- 详情界面 -->
+    <div class="detail-container" style="display: none;">
+        <!-- 蓝天白云背景 -->
+        <div class="sky-background"></div>
+        
+        <!-- 书本容器 -->
+        <div class="wish-container">
+            <!-- 书的背景图 -->
+            <div class="book-background"></div>
+            
+            <!-- 内容层 -->
+            <div class="content-overlay">
+                <!-- 标题和选择器 -->
+                <div class="header">
+                    <h1 class="title">游戏详情</h1>
+                </div>
+                
+                <audio id="click-sound" src="./audio/Click.wav"></audio>
+                <!-- 说明文字 -->
+                <div class="note">
+                    ※游戏详情界面，显示游戏的相关信息和规则说明。
+                </div>
+                
+                <!-- 详情内容 -->
+                <div class="table-container">
+                    <div class="detail-content">
+                        <h2>游戏规则</h2>
+                        <p>1. 点击祈愿按钮进行抽卡</p>
+                        <p>2. 拖拽卡牌进行战斗</p>
+                        <p>3. 卡牌碰撞会造成伤害</p>
+                        <p>4. 当卡牌生命值为0时会死亡</p>
+                        <p>5. 点击跳过按钮可以跳过动画</p>
+                        
+                        <h2>稀有度说明</h2>
+                        <p><span style="color: #BD6932;">★★★★★</span>：5星卡牌，最高稀有度</p>
+                        <p><span style="color: #A256E1;">★★★★</span>：4星卡牌，中等稀有度</p>
+                        <p><span style="color: #19a0ea;">★★★</span>：3星卡牌，普通稀有度</p>
+                        
+                        <h2>伤害计算</h2>
+                        <p>5星卡牌：每次碰撞造成10点伤害</p>
+                        <p>4星卡牌：每次碰撞造成5点伤害</p>
+                        <p>3星卡牌：每次碰撞造成2点伤害</p>
+                        
+                        <h2>其他功能</h2>
+                        <p>1. 点击右上角的关闭按钮可以清除祈愿记录</p>
+                        <p>2. 虚拟氪金系统：在商城中可以购买创世结晶，1创世结晶=1原石</p>
+                        <p>3. 当原石不足时，系统会提示使用创世结晶兑换</p>
+                    </div>
+                </div>
+                
+                <!-- 关闭按钮 -->
+                <img src="./images/gacha_bg/book-exit.png" alt="关闭" class="book-close" id="closeDetailBtn">
+            </div>
+        </div>
+    </div>
+<script src="./js/imagePreload.js"></script>
+<script src="./js/soundManager.js"></script>
+<script src="./js/cardList.js"></script>
+<script src="./js/CharList.js"></script>
+<script src="./js/secretBox.js"></script>
+<script src="./js/gacha.js"></script>
+<script src="./js/Card_Record.js"></script>
+<script src="./js/load-weapon-equip.js"></script>
+<script src="./js/weapon-equip.js"></script>
+<img src="images/gacha_bg/brand-d7e2d962.png" alt="Wish" id="WishICO" data-text="祈愿">
+
+<!-- 秘典之盒 -->
+<div id="secretBox" class="secret-box">
+    <img src="images/秘典之盒.png" alt="秘典之盒">
+    <div class="secret-box-count">0</div>
+</div>
+
+<!-- 背包界面 -->
+<div id="inventoryModal" class="inventory-modal" style="display: none;">
+    <div class="inventory-container">
+        <div class="inventory-header">
+            <h2>秘典之盒 - 卡牌保护库</h2>
+            <button class="close-inventory-btn" id="closeInventoryBtn">×</button>
+        </div>
+        <div class="inventory-content">
+            <div class="inventory-grid" id="inventoryGrid">
+                <!-- 保护的卡牌将显示在这里 -->
+            </div>
+            <div class="inventory-empty" id="inventoryEmpty">
+                <p>暂无保护的卡牌</p>
+                <p>将卡牌拖拽到秘典之盒即可保护</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
