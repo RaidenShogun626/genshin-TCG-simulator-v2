@@ -1,11 +1,14 @@
 # genshin-TCG-simulator-v2
-genshin-TCG-simulator is updata!
+《genshin-TCG-simulator》
+>Is Updata!
 <br>
-play now!!
+>play now!!
 <br>
 >https://raidenshogun626.github.io/genshin-TCG-simulator-v2/<
-《原神七圣召唤祈愿模拟器V2》版本已经上线！！！
 <br>
-立即游玩！！
+《原神七圣召唤祈愿模拟器V2》
+>已经上线！！！
+<br>
+>立即游玩！！
 <br>
 >https://raidenshogun626.github.io/genshin-TCG-simulator-v2/<
