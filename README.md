@@ -1,5 +1,5 @@
 # genshin-TCG-simulator-v2
-《genshin-TCG-simulator》
+《Genshin-TCG-Simulator v2》
 >Is Updata!
 <br>
 >play now!!
